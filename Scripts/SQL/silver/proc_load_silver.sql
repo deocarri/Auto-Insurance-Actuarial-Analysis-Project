@@ -39,35 +39,35 @@ begin
 		print '>> Inserting Data Into: silver.Frequency';
 		insert into silver.Frequency(
 			IDpol,
-      ClaimNb,
-      Exposure, 
-      VehPower,
-      VehAge, 
-      DrivAge,
-      BonusMalus,
-      VehBrand, 
-      VehGas, 
-      Area, 
-      Density, 
-      Region)
+      		ClaimNb,
+      		Exposure, 
+      		VehPower,
+      		VehAge, 
+      		DrivAge,
+      		BonusMalus,
+      		VehBrand, 
+      		VehGas, 
+      		Area, 
+      		Density, 
+      		Region)
 		select
-		  IDpol,
-      ClaimNb as ClaimNumber, 
-		  cast(Exposure as decimal(18,2)), 
-      VehPower as VehiclePower, 
-      VehAge as VehicleAge, 
-      DrivAge as DriverAge, 
-      BonusMalus, 
-      trim(VehBrand) as VehicleBrand, 
-      trim(VehGas) as VehicleGas,
-      trim(Area), 
-      Density, 
-      trim(Region)
+		  	IDpol,
+      		ClaimNb as ClaimNumber, 
+			cast(Exposure as decimal(18,2)), 
+      		VehPower as VehiclePower, 
+      		VehAge as VehicleAge, 
+      		DrivAge as DriverAge, 
+      		BonusMalus, 
+      		trim(VehBrand) as VehicleBrand, 
+      		trim(VehGas) as VehicleGas,
+      		trim(Area), 
+      		Density, 
+      		trim(Region)
 		set @end_time = getdate();
 		print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
 		print '>>----------------------------';
 
-    print '--------------------------------';
+    	print '--------------------------------';
 		print 'Loading Severity Table';
 		print '--------------------------------';
 
@@ -77,15 +77,15 @@ begin
 		print '>> Inserting Data Into: silver.Severity';
 		insert into silver.Severity(
 			IDpol,
-      ClaimAmount)
-    select
-      IDpol,
-      ClaimAmount
-    set @end_time = getdate();
-    print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
+     		ClaimAmount)
+    	select
+      		IDpol,
+      		ClaimAmount
+    	set @end_time = getdate();
+    	print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
 		print '>>----------------------------';
 
-    set @batch_end_time = getdate();
+    	set @batch_end_time = getdate();
 		print '================================================';
 		print ' >>>> Total Load Duration ' + cast(datediff(second, @batch_start_time, @batch_end_time) as nvarchar) + ' seconds';
 		print '================================================';
