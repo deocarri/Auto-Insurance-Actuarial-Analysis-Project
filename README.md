@@ -2,7 +2,9 @@
 
 Welcome to my **Auto Insurance Actuarial Analysis Project** repository. Thank you for taking the time to view this starter project of mine. Here what I aim to accomplish is to,
 analyze large amounts of motor insurance policy data and using its claim frequency, severity distributions, and risk segmentations to generate predictive models. 
+
 ---
+
 ## Project Requirements
 
 ### Build the SQL Data Warehouse. 
