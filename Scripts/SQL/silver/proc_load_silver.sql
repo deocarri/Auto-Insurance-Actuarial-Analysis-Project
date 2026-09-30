@@ -89,6 +89,7 @@ begin
       		IDpol,
       		ClaimAmount
 		from bronze.Severity
+		where ClaimAmount > 0;
     	set @end_time = getdate();
     	print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
 		print '>>----------------------------';
