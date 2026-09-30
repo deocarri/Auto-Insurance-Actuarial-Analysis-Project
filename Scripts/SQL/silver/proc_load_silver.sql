@@ -53,7 +53,7 @@ begin
 		select
 		  	IDpol,
       		ClaimNb as ClaimNumber, 
-			cast(Exposure as decimal(18,2)), 
+			Exposure, 
       		VehPower as VehiclePower, 
       		VehAge as VehicleAge, 
       		DrivAge as DriverAge, 
@@ -63,8 +63,15 @@ begin
       		trim(Area), 
       		Density, 
       		trim(Region)
+		from bronze.Frequency
+			where Exposure > 0
+			and ClaimNb >= 0 
+			and DrivAge between 18 and 100
+			and VehAge >= 0 
+			and BonusMalus between 50 and 230;
 		set @end_time = getdate();
 		print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
+
 		print '>>----------------------------';
 
     	print '--------------------------------';
@@ -81,6 +88,7 @@ begin
     	select
       		IDpol,
       		ClaimAmount
+		from bronze.Severity
     	set @end_time = getdate();
     	print ' >> Load Duration ' + cast(datediff(second, @start_time, @end_time) as nvarchar) + ' seconds';
 		print '>>----------------------------';
