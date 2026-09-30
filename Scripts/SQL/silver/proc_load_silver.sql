@@ -107,4 +107,10 @@ begin
 		print 'Error Message' + CAST(ERROR_STATE() as nvarchar);
 		print '====================================';
 	end catch
-end
+end;
+
+-- Create indexes since they will be joined often. 
+create index IX_silver_Frequency_IDpol
+on silver.Frequency(IDpol);
+create index IX_silver_Severity_IDpol
+on silver.Severity(IDpol);
