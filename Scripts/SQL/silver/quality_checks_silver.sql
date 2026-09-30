@@ -79,3 +79,25 @@ select
 	avg(ClaimAmount) as AvgClaim,
 	sum(ClaimAmount) as TotalClaimsPaid
 from bronze.Severity;
+
+-- Severity by policy
+select 
+	IDpol, 
+	count(*) as SeverityClaimCount,
+	sum(ClaimAmount) as TotalClaimAmount
+from silver.Severity
+group by IDpol;
+
+-- Check which policies have claims but no severity claim
+select 
+	f.IDpol,
+	f.ClaimNb,
+	count(s.IDpol) as SeverityClaimCount
+from silver.Frequency f 
+left join silver.Severity s
+	on f.IDpol = s.IDpol
+where f.ClaimNb > 0 
+group by
+	f.IDpol,
+	f.ClaimNb
+having f.ClaimNb <> count(s.IDpol);
