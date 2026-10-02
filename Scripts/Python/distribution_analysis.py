@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
+import matplotlib.pyplot as plt
 
 freq = pd.read_csv(r"C:\SQL Data\freMTPL2freq.csv")
 sev = pd.read_csv(r"C:\SQL Data\freMTPL2sev.csv")
